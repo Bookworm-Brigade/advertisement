@@ -1,4 +1,6 @@
 import React from "react";
+import Edit from "./Edit";
+import Delete from "./Delete";
 
 export const TableList = () => {
   return (
@@ -33,9 +35,9 @@ export const TableList = () => {
               </div>
             </td>
             <td>8:00AM 18/06/2025</td>
-            <td>
-              <button className="btn w-23 h-15 bg-blue-800">Edit</button>
-              <button className="btn w-23 h-15 bg-red-800 ml-10">Delete</button>
+            <td className="flex">
+             <Edit/>
+             <Delete/>
             </td>
           </tr>
         </tbody>
