@@ -1,7 +1,15 @@
-import {apiClient} from "./Config"
+
+import { apiClient } from "./Config";
 
 export const apiRegisterUser = (payload) => {
-    return apiClient.post("/register",payload)
+    return apiClient.post("/register", payload)
 };
 
-export const apiUserLogin = (payload) => apiClient.post("/login", payload);
+export const apiUserLogin = (payload) => {
+    return apiClient.post("/login", payload,
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+};
