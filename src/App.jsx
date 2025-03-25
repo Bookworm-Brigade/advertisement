@@ -5,6 +5,8 @@ import LoginPage from "./pages/LoginPage";
 import UserPage from "./pages/User/UserPage";
 import AdDetail from "./pages/User/AdDetail";
 import LandingPage from "./pages/User/LandingPage";
+import LogPage from "./pages/User/LogPage";
+import RegisterPage from "./pages/User/RegisterPage";
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
           <Route path="/user" element={<UserPage />} />
           <Route path="/detail" element={<AdDetail />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/log" element={<LogPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
+
         </Routes>
       </BrowserRouter>
     </>

@@ -95,7 +95,7 @@ const ParallaxComponent = () => {
           <div className="absolute w-full h-[2px] bg-black bottom-0" />
           <div data-parallax-layers className="absolute w-full h-full">
             <img
-              src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.unsplash.com/photo-1640386355103-83ebf7c6c83e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               data-parallax-layer="1"
               alt="Layer 3"
               className="absolute w-full h-full object-cover "
@@ -125,10 +125,9 @@ const ParallaxComponent = () => {
         </div>
       </section>
       <section className="flex justify-center bg-black items-center min-h-screen">
-        <Link to="/user">
+        <Link to="/signup">
           {/* <video src={logo}  loop></video> */}
           <video src={logo} ref={videoRef} width="640" height="360" muted>
-            <source type="video/mp4" />
           </video>
         </Link>
       </section>
