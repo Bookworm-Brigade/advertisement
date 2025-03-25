@@ -15,10 +15,10 @@ export default function ParentComponent() {
   return (
     <div>
       <button
-        className="w-35 h-12 border rounded-full bg-amber-900"
+        // className="w-35 h-12 border rounded-full bg-amber-900"
         onClick={() => handleOpenModal()}
       >
-        Add
+        {/* Add */}
       </button>
 
       <ModalForm isOpen={isModalOpen} onClose={handleCloseModal} />

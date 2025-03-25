@@ -2,6 +2,7 @@ import React from "react";
 import ModalForm from "./ModalForm";
 import ParentComponent from "./ParentComponent";
 
+
 export const NavBar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -17,6 +18,7 @@ export const NavBar = () => {
        <ParentComponent />
       </div>
     </div>
+   
   );
 };
 export default NavBar;
