@@ -29,10 +29,10 @@ function Login() {
 
     try {
       const response = await apiUserLogin(data) 
-      const result = await response.json();
+      const result = await response.data;
       console.log("Server Response:", result); // Debugging
 
-      if (response.ok) {
+      if (response.status === 200) {
         setSuccess("Login successful!");
         setFormData({ username: "", password: "" }); // Reset form
       } else {

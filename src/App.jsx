@@ -15,10 +15,14 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/users" element={<UserPage />} />
+      
+          <Route path="/users" element={<UsersPage />} />
           <Route path="/signups" element={<Signup />} />
           <Route path="/logins" element={<Login />} />
           <Route path="/update" element={<UpdateUser />} />
+
+          
+
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/login" element={<LoginPage />} /> */}
           <Route path="/user" element={<UserPage />} />
@@ -26,6 +30,8 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/log" element={<LogPage />} />
           <Route path="/signup" element={<RegisterPage />} />
+
+
         </Routes>
       </BrowserRouter>
     </>

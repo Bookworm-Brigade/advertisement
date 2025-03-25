@@ -7,6 +7,7 @@ export const AdminPage = () => {
     <>
     <NavBar />
     <TableList />
+    <TableList />
     </>
   );
 };
