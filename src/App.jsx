@@ -6,6 +6,7 @@ import Signup from "./services/Signup";
 import Login from "./services/Login";
 import UpdateUser from "./pages/UpdateUser";
 
+
 function App() {
   return (
     <>
@@ -15,8 +16,8 @@ function App() {
           <Route path="/user" element={<UserPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/update" element={<UpdateUser />} />
-          
+          <Route path="/updateuser" element={<UpdateUser />} />
+
 
         </Routes>
       </BrowserRouter>

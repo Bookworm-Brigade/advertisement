@@ -8,7 +8,6 @@ function Login() {
     username: "",
     password: "",
   });
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -29,6 +28,7 @@ function Login() {
 
     try {
       const response = await apiUserLogin(data) 
+      localStorage.setItem('token', response.data.accessToken);
       const result = await response.data;
       console.log("Server Response:", result); // Debugging
 
