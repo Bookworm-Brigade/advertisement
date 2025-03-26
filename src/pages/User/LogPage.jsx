@@ -30,11 +30,12 @@ export const LogPage = () => {
     data.append("password", formData.password.trim());
 
     try {
-      const response = await apiUserLogin(data);
-      const result = await response.json();
+      const response = await apiUserLogin(data)
+      localStorage.setItem('token', response.data.accessToken);
+      const result = await response.data;
       console.log("Server Response:", result); // Debugging
 
-      if (response.ok) {
+      if (response.status === 200) {
         setSuccess("Login successful!");
         setFormData({ username: "", password: "" }); // Reset form
       } else {
@@ -77,6 +78,7 @@ export const LogPage = () => {
         <h3 className="font-bold text-6xl py-7 text-white">Welcome Back</h3>
         {error && <p className="text-red-500">{error}</p>}
         {success && <p className="text-green-500">{success}</p>}
+        
         <form onSubmit={handleSubmit} className="font-bold">
           <fieldset className="fieldset">
             <legend className="fieldset-legend text-white text-2xl">
@@ -84,6 +86,7 @@ export const LogPage = () => {
             </legend>
             <input
               type="text"
+              name="username"
               value={formData.username}
               onChange={handleChange}
               className="input w-full h-20 text-black outline-none text-xl font-bold border-none bg-white"
@@ -97,6 +100,7 @@ export const LogPage = () => {
             </legend>
             <input
               type="password"
+              name="password"
               required
               value={formData.password}
               onChange={handleChange}
@@ -104,17 +108,16 @@ export const LogPage = () => {
               placeholder="Type password"
             />
           </fieldset>
-          <Link to="/user">
             {" "}
             <button
               type="submit"
               className="btn mt-10 w-full text-white h-20 text-xl"
             >
-              Sign In{" "}
-            </button>{" "}
             {loading ? "Logging in..." : "Login"}
-          </Link>
+            </button>{" "}
         </form>
+
+
         <div className="text-center mt-5 text-xl">
           Don't have an account ?{" "}
           <Link to="/signup" className="text-orange-600 font-bold">

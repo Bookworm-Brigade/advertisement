@@ -3,9 +3,9 @@
 
 // export default function ModalForm({ isOpen, onClose }) {
 //   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState(null); // Track any error 
+//   const [error, setError] = useState(null); // Track any error
 //   const [success, setSuccess] = useState(null); // Track success message
-  
+
 //   // Form data states (you may prefer to manage state for each field individually)
 //   const [formData, setFormData] = useState({
 //     product_name: "",
@@ -83,7 +83,7 @@
 //         onClick={() => setShowForm((prevState) => !prevState)} // Toggle form visibility
 //         className="bg-[#F5F5F5] text-red-500 px-4 py-2 rounded-lg mb-6 w-23 h-16 border-2 border-gray-400 font-bold"
 //       >
-//         {showForm ? "Hide Edit" : "Show Edit"} 
+//         {showForm ? "Hide Edit" : "Show Edit"}
 //       </button>
 
 //       {/* Conditionally render the form based on showForm state */}
@@ -128,7 +128,7 @@
 
 //           <div className="flex flex-col">
 //             <label htmlFor="description" className="block pl-15">
-//               Description 
+//               Description
 //             </label>
 //             <input
 //               type="text"
@@ -174,7 +174,6 @@
 //               />
 //           </div>
 //           </div>
-        
 
 //           {/* Show success or error messages */}
 //           {error && <div className="text-red-500">{error}</div>}
@@ -203,9 +202,10 @@
 //   );
 // }
 
-
 import axios from "axios";
 import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
+
 
 export default function ModalForm() {
   const handleOpenForm = () => {
@@ -266,9 +266,10 @@ export default function ModalForm() {
     <div className="flex flex-col items-center">
       <button
         onClick={handleOpenForm}
-        className="bg-[#F5F5F5] text-red-400 px-4 py-2 rounded-md w-23 h-15 border-2 border-gray-400 font-bold"
+        className="flex justify-center items-center bg-[#F5F5F5] text-black px-4 py-2 rounded-md w-23 text-[0.7vw] border-2 mr-5 border-gray-400 font-bold"
       >
-        Edit Product
+        <FaEdit />
+        Edit
       </button>
     </div>
   );

@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
       
-          <Route path="/users" element={<UsersPage />} />
+          <Route path="/users" element={<UserPage />} />
           <Route path="/signups" element={<Signup />} />
           <Route path="/logins" element={<Login />} />
           <Route path="/update" element={<UpdateUser />} />
@@ -30,7 +30,6 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/log" element={<LogPage />} />
           <Route path="/signup" element={<RegisterPage />} />
-
 
         </Routes>
       </BrowserRouter>

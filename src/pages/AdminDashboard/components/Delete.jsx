@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { MdOutlineDeleteOutline } from "react-icons/md";
+
 
 function Delete({ itemId }) {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -38,8 +40,10 @@ function Delete({ itemId }) {
       {/* Button to trigger showing the confirmation form */}
       <button
         onClick={toggleFormVisibility}
-        className="btn w-23 h-15 text-red-500 bg-[#F5F5F5] ml-10 border-2 border-gray-400 cursor-pointer"
-      >
+        className="bg-[#F5F5F5] flex items-center  text-black px-4 py-2 rounded-md w-23 text-[0.7vw] border-2 border-gray-400 font-bold"
+        >
+          <MdOutlineDeleteOutline />
+
         Delete
       </button>
 
