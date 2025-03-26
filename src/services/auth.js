@@ -13,3 +13,13 @@ export const apiUserLogin = (payload) => {
             },
         });
 };
+
+export const apiUpdateUser = (payload) => {
+    return apiClient.post("/users/updateUser", payload,
+      {
+        headers: {
+            "Content-Type": "application/json",
+        },
+      }  
+    );
+};

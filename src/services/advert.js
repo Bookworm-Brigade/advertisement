@@ -1,6 +1,10 @@
 import { apiClient } from "./Config";
 
-export const apiAddAdvert = (payload) => apiClient.post("/advert", payload);
+export const apiAddAdvert = (payload) => apiClient.post("/advert", payload, {
+    headers:{
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+});
 
 export const apiAllAdvert = () => apiClient.get("/advert");
 

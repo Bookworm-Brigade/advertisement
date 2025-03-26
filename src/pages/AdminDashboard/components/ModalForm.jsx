@@ -1,69 +1,153 @@
-import axios from "axios";
-import { useState } from "react";
 
-export default function ModalForm() {
-  const handleOpenForm = () => {
-    const newWindow = window.open("", "_blank");
-    if (newWindow) {
-      newWindow.document.write(`
-        <html>
-          <head>
-            <title>Add Product</title>
-            <style>
-              body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
-              form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: auto; }
-              input, button { padding: 10px; font-size: 16px; }
-              .success { color: green; }
-              .error { color: red; }
-              .close-btn { background-color: #ff4d4d; color: white; border: none; padding: 10px; cursor: pointer; margin-top: 20px; }
-            </style>
-          </head>
-          <body>
-            <h2>Add a Product</h2>
-            <form id="productForm">
-              <input type="text" name="product_name" placeholder="Product Name" required />
-              <input type="text" name="category" placeholder="Category" required />
-              <input type="text" name="description" placeholder="Description" required />
-              <input type="number" name="price" placeholder="Price" required />
-              <input type="file" name="image" accept="image/*" required />
-              <button type="submit">Submit</button>
-              <p id="responseMessage"></p>
-            </form>
 
-            <button class="close-btn" onclick="window.close()">Close</button>
+import { apiAddAdvert } from "../../../services/Advert";
 
-            <script>
-              document.getElementById("productForm").onsubmit = async function(event) {
-                event.preventDefault();
-                const formData = new FormData(this);
 
-                try {
-                  const response = await fetch("https://advertisement-api-zwzm.onrender.com", {
-                    method: "POST",
-                    body: formData
-                  });
 
-                  const result = await response.json();
-                  document.getElementById("responseMessage").innerHTML = "<span class='success'>Product added successfully!</span>";
-                } catch (error) {
-                  document.getElementById("responseMessage").innerHTML = "<span class='error'>Failed to add product.</span>";
-                }
-              };
-            </script>
-          </body>
-        </html>
-      `);
+ const AddProduct = () => {
+  const handleSubmit = async(event) => {
+    // prevent default behaviour of reload
+    event.preventDefault();
+    // show loading indicator
+    // const [loading, setLoading] = useState(false);
+    // collect form data
+    const formData = new FormData (event.target);
+    // post data to backend
+    try{
+      const response = await apiAddAdvert (formData);
+      console.log (response);
+    } catch (error) {
+      console.log(error);
     }
   };
-
+  
+    // const handleClose = () => {
+    //   setIsVisible(false);
+    // };
+  
+ 
   return (
     <div className="flex flex-col items-center">
       <button
-        onClick={handleOpenForm}
-        className="bg-[#F5F5F5] text-red-400 px-4 py-2 rounded-lg mb-6"
+        // onClick={() => setShowForm((prevState) => !prevState)}
+        className="bg-[#F5F5F5] text-red-500 px-4 py-2 rounded-lg mb-6"
       >
-        Add Product
+        {/* {showForm ? "Hide Form" : "Show form"}  */}Submit
       </button>
+
+       {/* {showForm && (  */}
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col h-100 w-180 items-center rounded-2xl border-4 border-gray-300 gap-6 pt-5 mr-100"
+        >
+          <div className="flex">
+            <div className="flex flex-col">
+              <label htmlFor="product_name" className="block pl-15">
+                Product Name
+              </label>
+              <input
+                type="text"
+                placeholder="Item name"
+                required
+                name="title"
+                id="title"
+                // value={formData.title}
+                // onChange={handleChange}
+                className="w-60 h-15 border-2 pl-5 rounded-lg"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="category" className="block pl-20">
+                Category
+              </label>
+              <input
+                type="text"
+                placeholder="Category"
+                required
+                name="category"
+                id="category"
+                // value={formData.category}
+
+
+
+
+
+                // onChange={handleChange}
+                className="w-60 h-15 border-2 ml-6 pl-5 rounded-lg"
+              />
+            </div>
+            {/* <span className="pl-20">
+              <button className="btn border-2" onClick={handleClose}>
+            <IoMdClose />
+            </button>
+            </span> */}
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="description" className="block pl-15">
+              Description 
+            </label>
+            <input
+              type="text"
+              placeholder="Describe your product"
+              required
+              name="description"
+              id="description"
+              // value={formData.description}
+              // onChange={handleChange}
+              className="w-60 h-15 border-2 pl-5 rounded-lg"
+            />
+          </div>
+
+          <div className="flex">
+            <div className="flex flex-col">
+              <label htmlFor="price" className="block pl-30">
+                Price
+              </label>
+              <input
+                type="text"
+                placeholder="Set price here"
+                required
+                name="price"
+                id="price"
+                // value={formData.price}
+                // onChange={handleChange}
+                className="w-60 h-15 border-2 pl-5 ml-10 rounded-lg"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="image" className="block pl-30">
+                Image
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                required
+                name="image"
+                id="image"
+                // onChange={handleChange}
+                className="w-60 h-15 border-2 pl-5 pt-2 ml-5 rounded-lg"
+              />
+            </div>
+          </div>
+
+          {/* {error && <div className="text-red-500">{error}</div>} */}
+          {/* {success && <div className="text-green-500">{success}</div>} */}
+
+          <button
+            // disabled={loading}
+            className="flex justify-center bg-red-500 h-10 w-40 pt-2 rounded-2xl"
+            type="submit"
+          >
+              "Add Product"
+            
+          </button>
+        </form>
+      
     </div>
+          
   );
 }
+
+export default AddProduct;
+

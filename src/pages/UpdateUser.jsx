@@ -1,95 +1,105 @@
-import React from 'react'
-import image from "../assets/images/image.png"
+import React, { useState } from 'react';
+import image from "../assets/images/image.png";
 
 function UpdateUser() {
-  return (
-    <div className="flex border-4 border-gray-400 w-230 ml-50 mt-20">
-        <form>
-        <div className="bg-[#F5F5F5] w-100">
-          <span className="text-4xl">
-            <h1>Update details here</h1>
-          </span>
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: ""
+  });
 
-          <label className="input validator">
-            <svg
-              className="h-[1em] opacity-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2.5"
-                fill="none"
-                stroke="currentColor"
-              >
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    console.log("Form Data Submitted:", formData);
+  };
+
+  return (
+    <div className="flex border-4 border-gray-400 w-200 ml-12 mt-10 p-5">
+      <form onSubmit={handleSubmit} className="w-full">
+        <div className="bg-gray-100 p-5 rounded-lg shadow-md">
+          <h1 className="text-2xl font-bold mb-5">Update Details Here</h1>
+          
+          <label className="input validator flex items-center gap-2">
+            <svg className="h-5 w-5 opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor">
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </g>
             </svg>
             <input
-              type="input"
+              type="text"
+              name="username"
               required
               placeholder="Username"
               pattern="[A-Za-z][A-Za-z0-9\-]*"
-              minlength="3"
-              maxlength="30"
-              title="Only letters, numbers or dash"
+              minLength="3"
+              maxLength="30"
+              title="Only letters, numbers, or dash"
+              value={formData.username}
+              onChange={handleChange}
+              className="input input-bordered w-full"
             />
           </label>
-          <p className="validator-hint">
-            Must be 3 to 30 characters
-            <br />
-            containing only letters, numbers or dash
-          </p>
+          <p className="text-sm text-gray-500">Must be 3 to 30 characters containing only letters, numbers, or dashes.</p>
+          
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            className="input input-bordered w-full mt-4"
+          />
+          
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            value={formData.password}
+            onChange={handleChange}
+            className="input input-bordered w-full mt-4"
+          />
 
-          <div className="flex flex-col gap-7">
-            <div className="indicator">
-              <span className="indicator-item badge">Required</span>
-              <input
-                type="text"
-                placeholder="Your email address"
-                className="input input-bordered"
-              />
-            </div>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm your password"
+            required
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            className="input input-bordered w-full mt-4"
+          />
 
-            <div className="indicator">
-              <span className="indicator-item badge">Required</span>
-              <input
-                type="text"
-                placeholder="Enter your password"
-                className="input input-bordered"
-              />
-            </div>
+          <select
+            name="role"
+            required
+            value={formData.role}
+            onChange={handleChange}
+            className="select select-bordered w-full mt-4"
+          >
+            <option value="" disabled>Choose:</option>
+            <option value="Vendor">Vendor</option>
+            <option value="User">User</option>
+          </select>
 
-            <div className="indicator">
-              <span className="indicator-item badge">Required</span>
-              <input
-                type="text"
-                placeholder="Confirm your password"
-                className="input input-bordered"
-              />
-            </div>
-
-            <div>
-              <select className="select validator" required>
-                <option disabled selected value="">
-                  Choose:
-                </option>
-                <option>Vendor</option>
-                <option>User</option>
-              </select>
-              <p className="validator-hint">Required</p>
-              <button className="btn text-red-400 border-2 border-gray-400 ml-20" type="submit">
-                Submit
-              </button>
-            </div>
-          </div>
+          <button type="submit" className="btn btn-primary w-full mt-4">Submit</button>
         </div>
-        </form>
-        <img src={image} alt="" className="w-100"/>
+      </form>
+      <img src={image} alt="User" className="w-100 ml-5 rounded-lg" />
     </div>
-  )
+  );
 }
 
-export default UpdateUser
+export default UpdateUser;
