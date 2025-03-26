@@ -5,18 +5,31 @@ import UserPage from "./pages/User/UserPage";
 import Signup from "./services/Signup";
 import Login from "./services/Login";
 import UpdateUser from "./pages/UpdateUser";
-
+import AdDetail from "./pages/User/AdDetail";
+import LandingPage from "./pages/User/LandingPage";
+import LogPage from "./pages/User/LogPage";
+import RegisterPage from "./pages/User/RegisterPage";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AdminPage />} />
+      
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/signups" element={<Signup />} />
+          <Route path="/logins" element={<Login />} />
+          <Route path="/update" element={<UpdateUser />} />
+
+          
+
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/user" element={<UserPage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/updateuser" element={<UpdateUser />} />
+          <Route path="/detail" element={<AdDetail />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/log" element={<LogPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
 
 
         </Routes>
