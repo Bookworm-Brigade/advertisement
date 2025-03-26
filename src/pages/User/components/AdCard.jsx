@@ -3,6 +3,7 @@ import img from "./bag.png";
 import { Link } from "react-router";
 // {ads,setAds}
 export const AdCard = () => {   
+
   return (
     <Link to="/detail">
       <div className="w-[29vw] h-[50vh] bg-white">

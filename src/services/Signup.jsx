@@ -3,11 +3,11 @@ import image from "../assets/images/image.png";
 
 function Signup() {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
+    username: "",
+    role: "",
     password: "",
     confirmPassword: "",
-    role: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -43,13 +43,16 @@ function Signup() {
     console.log("Sending request data:", requestData); // Debug request payload
 
     try {
-      const response = await fetch("https://advertisement-api-zwzm.onrender.com/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+      const response = await fetch(
+        "https://advertisement-api-zwzm.onrender.com/users/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
 
       const result = await response.json();
 
@@ -57,7 +60,13 @@ function Signup() {
 
       if (response.ok) {
         setSuccess("Registration successful!");
-        setFormData({ username: "", email: "", password: "", confirmPassword: "", role: "" }); // Reset form
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+          role: "",
+        }); // Reset form
       } else {
         setError(result.message || "Registration failed!");
       }
@@ -127,7 +136,9 @@ function Signup() {
             onChange={handleChange}
             className="block w-full p-2 mb-4 border rounded"
           >
-            <option value="" disabled>Choose Role</option>
+            <option value="" disabled>
+              Choose Role
+            </option>
             <option value="vendor">vendor</option>
             <option value="user">user</option>
             {/* <option value="admin">admin</option> */}

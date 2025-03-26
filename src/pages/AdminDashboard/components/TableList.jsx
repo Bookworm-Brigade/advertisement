@@ -4,8 +4,8 @@ import Delete from "./Delete";
 
 export const TableList = () => {
   return (
-    <div className="overflow-x-auto flex items-center justify-center">
-      <table className="table w-250 ">
+    <div className="overflow-x-auto flex  justify-center">
+      <table className="table w-300 ">
         {/* head */}
         <thead>
           <tr>
@@ -21,7 +21,7 @@ export const TableList = () => {
             <td>
               <div className="flex items-center gap-3">
                 <div className="avatar">
-                  <div className="mask mask-squircle size-25">
+                  <div className="rounded-full size-15">
                     <img
                       src="https://img.daisyui.com/images/profile/demo/2@94.webp"
                       alt="Avatar Tailwind CSS Component"
@@ -35,7 +35,7 @@ export const TableList = () => {
               </div>
             </td>
             <td>8:00AM 18/06/2025</td>
-            <td className="flex">
+            <td className="flex justify-end">
              <Edit/>
              <Delete/>
             </td>
