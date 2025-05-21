@@ -14,11 +14,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      
         <Routes>
       
-          <Route path="/users" element={<UserPage />} />
           <Route path="/signups" element={<Signup />} />
-          <Route path="/logins" element={<Login />} />
+          
           <Route path="/update" element={<UpdateUser />} />
 
           
@@ -26,10 +26,11 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/login" element={<LoginPage />} /> */}
           <Route path="/user" element={<UserPage />} />
-          <Route path="/detail" element={<AdDetail />} />
+          <Route path="/detail/:id" element={<AdDetail />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/log" element={<LogPage />} />
           <Route path="/signup" element={<RegisterPage />} />
+          <Route path="/login" element={<Login />} />
 
         </Routes>
       </BrowserRouter>

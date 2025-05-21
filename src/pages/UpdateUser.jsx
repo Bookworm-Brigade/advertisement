@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
 import image from "../assets/images/image.png";
+import { apiUpdateAdvert } from '../services/Advert';
 
 function UpdateUser() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    role: ""
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
+ const handleSubmit = async(event) => {
+    event.preventDefault ();
+    
+    const formData = new FormData (event.target);
+    try{
+        const response = await apiUpdateAdvert(formData);
+        console.log(response);
+    } catch (error) {
+        console.log(error);
     }
-    console.log("Form Data Submitted:", formData);
-  };
+ };
 
   return (
     <div className="flex border-4 border-gray-400 w-200 ml-12 mt-10 p-5">
@@ -45,8 +37,6 @@ function UpdateUser() {
               minLength="3"
               maxLength="30"
               title="Only letters, numbers, or dash"
-              value={formData.username}
-              onChange={handleChange}
               className="input input-bordered w-full"
             />
           </label>
@@ -57,8 +47,6 @@ function UpdateUser() {
             name="email"
             placeholder="Your email address"
             required
-            value={formData.email}
-            onChange={handleChange}
             className="input input-bordered w-full mt-4"
           />
           
@@ -67,8 +55,6 @@ function UpdateUser() {
             name="password"
             placeholder="Enter your password"
             required
-            value={formData.password}
-            onChange={handleChange}
             className="input input-bordered w-full mt-4"
           />
 
@@ -77,16 +63,12 @@ function UpdateUser() {
             name="confirmPassword"
             placeholder="Confirm your password"
             required
-            value={formData.confirmPassword}
-            onChange={handleChange}
             className="input input-bordered w-full mt-4"
           />
 
           <select
             name="role"
             required
-            value={formData.role}
-            onChange={handleChange}
             className="select select-bordered w-full mt-4"
           >
             <option value="" disabled>Choose:</option>

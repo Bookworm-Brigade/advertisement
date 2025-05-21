@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import vid from "./components/bots.mp4";
 import { Link } from "react-router";
-// import loadingPage from "./components/loading.png";
-// import errors from "./components/error.png";
 import { apiUserLogin } from "../../services/Auth";
 
 export const LogPage = () => {
+  const navigate = useNavigate(); // Initialize navigation
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -23,21 +23,28 @@ export const LogPage = () => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
-    setLoading(true); // Start loading
+    setLoading(true);
 
     const data = new FormData();
     data.append("username", formData.username.trim());
     data.append("password", formData.password.trim());
 
     try {
-      const response = await apiUserLogin(data)
-      localStorage.setItem('token', response.data.accessToken);
-      const result = await response.data;
-      console.log("Server Response:", result); // Debugging
+      const response = await apiUserLogin(data);
+      const result = response.data;
+      console.log("Server Response:", result);
 
       if (response.status === 200) {
+        localStorage.setItem("token", result.accessToken);
         setSuccess("Login successful!");
-        setFormData({ username: "", password: "" }); // Reset form
+        setFormData({ username: "", password: "" });
+
+        // Redirect based on role
+        if (result.role === "user") {
+          navigate("/user"); // Redirect user to user page
+        } else {
+          navigate("/admin"); // Default redirect (for other roles)
+        }
       } else {
         setError(result.message || "Login failed!");
       }
@@ -45,32 +52,9 @@ export const LogPage = () => {
       console.error("Fetch Error:", error);
       setError("An error occurred. Please try again later.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
-
-  // if (loading)
-  //   return (
-  //     <div className="w-[100%] h-screen flex items-center justify-center bg-black text-center text-xl">
-  //       <img
-  //         className="w-[80%] object-contain"
-  //         src={loadingPage}
-  //         alt="loading"
-  //       />
-  //     </div>
-  //   );
-  // if (error)
-  //   return (
-  //     <div className="w-[100%] h-screen flex flex-col items-center justify-center bg-black text-center text-xl relative">
-  //       {" "}
-  //       <img className="w-[70%] flex flex-col items-center justify-center object-contain " src={errors} alt={setError} />
-  //       <Link to="/" className=" flex items-center justify-center" >
-  //         <button className="absolute top-[80vh] bg-red-700 px-6 py-5 font-bold cursor-pointer rounded-4xl">
-  //           Go Home
-  //         </button>
-  //       </Link>
-  //     </div>
-  //   );
 
   return (
     <div className="flex items-center justify-center h-screen bg-black px-[5vw]">
@@ -108,18 +92,14 @@ export const LogPage = () => {
               placeholder="Type password"
             />
           </fieldset>
-            {" "}
-            <button
-              type="submit"
-              className="btn mt-10 w-full text-white h-20 text-xl"
-            >
+          
+          <button type="submit" className="btn mt-10 w-full  h-20 text-xl">
             {loading ? "Logging in..." : "Login"}
-            </button>{" "}
+          </button>
         </form>
 
-
-        <div className="text-center mt-5 text-xl">
-          Don't have an account ?{" "}
+        <div className="text-center mt-5 text-xl text-white">
+          Don't have an account?{" "}
           <Link to="/signup" className="text-orange-600 font-bold">
             Sign Up
           </Link>
@@ -128,18 +108,11 @@ export const LogPage = () => {
 
       <div className="flex items-center justify-center object-cover">
         <Link to="/">
-          {" "}
-          <video
-            src={vid}
-            loop
-            autoPlay
-            width="640"
-            height="200"
-            muted
-          ></video>{" "}
+          <video src={vid} loop autoPlay width="640" height="200" muted></video>
         </Link>
       </div>
     </div>
   );
 };
+
 export default LogPage;

@@ -12,12 +12,12 @@ export const Nav = () => {
 
         <div class="flex rounded-md  outline-none overflow-hidden ">
           <input
-            type="email"
+            type="search"
             placeholder="Search Something..."
             class="w-full outline-none bg-white text-gray-600 text-sm px-10 py-5"
           />
           <button
-            type="button"
+            type="submit"
             class="flex items-center justify-center bg-[#EB4E27] px-5"
           >
             <svg

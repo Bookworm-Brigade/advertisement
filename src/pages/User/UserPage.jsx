@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./components/Nav";
 import AdCard from "./components/AdCard";
 import all from "./components/all.png";
+import { apiAllAdvert } from "../../services/Advert";
 // import loadingPage from "./components/loading.png";
-// import errors from "./components/error.png";, { useState, useEffect, useMemo } 
+// import errors from "./components/error.png";, { useState, useEffect, useMemo }
 
 // import axios from "axios";
 // import { Link } from "react-router";
 
 export const UserPage = () => {
+  // defining a place to store with usestate
+  const [ads, setAds] = useState([]);
+  //  function to get ad
+  const getAds = async () => {
+    try {
+      const response = await apiAllAdvert();
+      setAds(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // const [ads, setAds] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
   // const getAds = async () => {
@@ -27,10 +40,11 @@ export const UserPage = () => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   getAds();
-  // }, []);
+  useEffect(() => {
+    getAds();
+  }, []);
 
+  
   // const sortedAds = useMemo(() => {
   //   return [...ads].sort((a, b) => a.title.localeCompare(b.title));
   // }, [ads]);
@@ -63,7 +77,7 @@ export const UserPage = () => {
       <Nav />
       <section
         className="w-full 
-       h-full flex flex-col items-center bg-[#F2F2F2] pt-30"
+     h-full flex flex-col items-center bg-[#F2F2F2] pt-30"
       >
         <div className="flex items-center justify-evenly w-[27vw] h-[8vh] rounded-full mt-[2vh] text-black bg-white text-xl font-[550] font-[Archivo]">
           <p className="flex items-center justify-center">
@@ -78,12 +92,9 @@ export const UserPage = () => {
 
         {/* <div className="grid grid-cols-3 gap-4 mt-[2vh]"> */}
         <div className="flex  justify-center flex-wrap gap-4 mt-[2vh] h-screen">
-          {/* {sortedAds.map((ad) => (
+          {ads.map((ad) => (
             <AdCard key={ad.id} ad={ad} />
-          ))} */}
-          <AdCard />
-          <AdCard />
-          <AdCard />
+          ))}
         </div>
       </section>
     </>
