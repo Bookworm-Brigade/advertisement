@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { apiDeleteAdvert } from "../../../services/Advert";
+import { apiDeleteAdvert } from "../../../services/advert";
 
 function Delete({ adId, onDeleteSuccess }) {
   const [confirming, setConfirming] = useState(false);

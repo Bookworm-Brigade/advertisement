@@ -1,6 +1,6 @@
 
 
-import { apiAddAdvert } from "../../../services/Advert";
+import { apiAddAdvert } from "../../../services/advert";
 
 
 

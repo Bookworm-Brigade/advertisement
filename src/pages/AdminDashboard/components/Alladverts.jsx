@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { apiAllAdvert } from '../../../services/Advert';
+import { apiAllAdvert } from '../../../services/advert';
 
 
 const Alladverts = () => {
