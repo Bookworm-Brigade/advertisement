@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Nav from "./components/Nav";
 import AdCard from "./components/AdCard";
 import all from "./components/all.png";
-import { apiAllAdvert } from "../services/Advert";
+import { apiAllAdvert } from "../../services/advert";
 // import loadingPage from "./components/loading.png";
 // import errors from "./components/error.png";, { useState, useEffect, useMemo }
 
@@ -86,7 +86,7 @@ export const UserPage = () => {
             all
           </p>
           <p>home</p>
-          <p>lifestyle</p>
+          <p>lifestyle/s</p>
           <p>technology</p>
         </div>
 
