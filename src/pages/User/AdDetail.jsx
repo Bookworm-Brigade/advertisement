@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"; // Ensure correct import
 import Nav from "./components/Nav";
-import { apiSingleAdvert } from "../../services/Advert";
+import { apiSingleAdvert } from "../../services/advert";
 import loadingPage from "./components/loading.png";
 
 
