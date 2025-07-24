@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import image from "../assets/images/image.png";
-import { apiUpdateAdvert } from '../services/Advert';
+import { apiUpdateAdvert } from '../services/advert';
 
 function UpdateUser() {
  const handleSubmit = async(event) => {
