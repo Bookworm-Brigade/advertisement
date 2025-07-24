@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import vid from "./components/bots.mp4";
 import { Link } from "react-router";
-import { apiUserLogin } from "../../services/Auth";
+import { apiUserLogin } from "../../services/auth";
 
 export const LogPage = () => {
   const navigate = useNavigate(); // Initialize navigation
