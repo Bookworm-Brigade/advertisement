@@ -1,7 +1,7 @@
 //
 import React, { useState } from "react";
 import image from "../assets/images/image.png";
-import { apiUserLogin } from "./Auth";
+import { apiUserLogin } from "./auth";
 
 function Login() {
   const handleSubmit = async (event) => {
